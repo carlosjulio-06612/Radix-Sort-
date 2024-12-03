@@ -1,5 +1,7 @@
 package Mundo;
 
+import java.util.Random;
+
 public class RxNodos {
 	int value;
 	RxNodos next; 
@@ -31,7 +33,19 @@ public class RxNodos {
 			copy=copy.getNext();
 		}
 	}
-
+	public RxNodos fillOut(RxNodos n, int y){
+		if (n == null) {
+            n = new RxNodos(0); // Iniciar con el primer valor aleatorio si n es null
+        }
+		RxNodos copy=n;
+		Random r=new Random();
+		for(int i=1;i<y;i++){
+			RxNodos nuevo=new RxNodos(r.nextInt(y));
+			copy.setNext(nuevo);
+			copy=copy.getNext();
+		}
+		return n;
+	}
 }
 
 
