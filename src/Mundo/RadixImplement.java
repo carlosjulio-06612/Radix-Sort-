@@ -14,7 +14,6 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Random;
 
 public class RadixImplement extends JFrame {
 
@@ -96,11 +95,16 @@ public class RadixImplement extends JFrame {
         sortedListPanel.setBounds(400, 50, 300, 700);
         sortedListPanel.setLayout(new GridLayout(0, 1, 10, 10));
         contentPane.add(sortedListPanel);
+        
+        JButton btnClean = new JButton("Clean");
+        btnClean.setBounds(800, 200, 150,50);
+        contentPane.add(btnClean);
 
         btnNewValue.addActionListener(e -> addValue());
         btnnext.addActionListener(e -> nextStep());
         btnback.addActionListener(e -> previousStep());
         btnFillArray.addActionListener(e -> fillArrayWithRandomValues());
+        btnClean.addActionListener(e -> clearInterface());
 
         steps = new java.util.ArrayList<>();
         currentStep = -1;
@@ -281,5 +285,17 @@ public class RadixImplement extends JFrame {
 
     private Color getRandomColor() {
         return new Color((int)(Math.random() * 0x1000000));
+    }
+    private void clearInterface() {
+        head = null;
+        steps.clear();
+        currentStep = -1;
+        txtValue.setText("");
+        unsortedListPanel.removeAll();
+        sortedListPanel.removeAll();
+        unsortedListPanel.revalidate();
+        unsortedListPanel.repaint();
+        sortedListPanel.revalidate();
+        sortedListPanel.repaint();
     }
 }
